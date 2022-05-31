@@ -10,7 +10,6 @@ HOW TO USE THIS PROJECT
 5. Open your browser and enter: http://localhost/MyWebsite/index.php
 
 # Ubuntu
-1. Copy this folder to /var/www/html by using cp command
-2. Install VS code if you haven't installed
-3. Download extension PHP Server
-4. Open index.php and right click, choose PHP Server: Serve project
+1. Install VS code if you haven't installed
+2. Download extension PHP Server
+3. Open index.php and right click, choose PHP Server: Serve project
