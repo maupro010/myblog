@@ -11,20 +11,27 @@ function getPDO(): PDO
     $dbname = 'pdoposts';
 
     // Set DSN
-    $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-
+    $dsn = 'mysql:host='.$host;
     // Creat a PDO instance
     $pdo = new PDO($dsn, $user, $password);
+    //Create database
+    $sql = 'CREATE DATABASE IF NOT EXISTS pdoposts';
+    $pdo->exec($sql);
+
+    // Creat a PDO instance
+    $pdo = new PDO($dsn.";dbname=$dbname", $user, $password);
     //Set PDO attribute
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //Correct font
-    $statement = $pdo->prepare('SET CHARACTER SET utf8');
-    $statement->execute();
+    $sql = 'SET CHARACTER SET utf8';
+    $pdo->exec($sql);
+    
+    
 
-    // sql to create table
+    //Create table
     $sql = "CREATE TABLE IF NOT EXISTS posts(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
@@ -33,10 +40,7 @@ function getPDO(): PDO
     file_name VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";
-  
-    //exec
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
+    $pdo->exec($sql);
     
     return $pdo;
 }
