@@ -4,13 +4,8 @@ require_once 'pdo.php';
 //check sign_in statement
 $isSignIn = $_COOKIE['sign_in'] ?? false;
 
-//Creat PDO
-$pdo = getPDO();
-
-//Get all data from database to display
-$statement = $pdo->prepare('SELECT * FROM posts ORDER BY created_at DESC');
-$statement->execute();
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+$post = new Post();
+$posts = $post->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +21,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <a href="index.php">Home Page</a>
     <a style="display: <?php echo $isSignIn ? 'inline-block':'none'; ?>" href="create.php">Blog Manager</a>
     <a style="display: <?php echo $isSignIn ? 'none':'inline-block' ?>" href="sign_in.php?address=blog.php">Sign In</a>
-    <a style="display: <?php echo $isSignIn ? 'inline-block':'none' ?>" href="sign_out.php?id=1&address=blog.php">Sign Out</a>
+    <a style="display: <?php echo $isSignIn ? 'inline-block':'none' ?>" href="sign_out.php?address=blog.php">Sign Out</a>
 </section>
 <!-- Show lists of blog -->
 <section class="blog-show">

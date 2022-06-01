@@ -28,12 +28,13 @@
     </form>
 </body>
 <?php
+require_once 'config/config.php';
     $address = $_GET['address'] ?? 'index.php';
     if (!empty($_POST['btn'])) {
         $a=$_POST['account'] ?? '';
         $b=$_POST['password'] ?? '';
-        $account = 'admin';
-        $password = '123456';
+        $account = ADMIN_ACCOUNT;
+        $password = ADMIN_PASS;
         if ($a!=$account and $b!=$password) {
             echo 'Sai thông tin đăng nhập!';
         } else {

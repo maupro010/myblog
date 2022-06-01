@@ -8,12 +8,8 @@ $isSignIn = $_COOKIE['sign_in'] ?? false;
 $id = $_GET['id'] ?? null;
 
 //Creat PDO
-$pdo = getPDO();
-
-//Get data from database to display
-$statement = $pdo->prepare('SELECT * FROM posts where created_at = :id');
-$statement->execute(['id'=>$id]);
-$post = $statement->fetch();
+$pdo = new Post();
+$post = $pdo->findOne($id);
 $array = explode('<br>',$post->body);
 ?>
 
@@ -33,7 +29,7 @@ $array = explode('<br>',$post->body);
     <a href="blog.php">Blog</a>
     <a style="display: <?php echo $isSignIn ? 'inline-block':'none'; ?>" href="create.php">Blog Manager</a>
     <a style="display: <?php echo $isSignIn ? 'none':'inline-block' ?>" href="sign_in.php?address=blog.php">Sign In</a>
-    <a style="display: <?php echo $isSignIn ? 'inline-block':'none' ?>" href="sign_out.php?id=1&address=blog.php">Sign Out</a>
+    <a style="display: <?php echo $isSignIn ? 'inline-block':'none' ?>" href="sign_out.php?address=blog.php">Sign Out</a>
 </section>
 <!-- Show full content of blog -->
 <section class="blog-show">

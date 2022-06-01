@@ -7,25 +7,15 @@ $title = $_POST['title'] ?? null;
 $body = $_POST['body'] ?? null;
 $author= $_POST['author'] ?? null;
 
-
 //check data edited
 if (!$id or !$title or !$body or !$author) {
     header('Location: create.php');
     exit;
 }
 
-//Create pdo
-$pdo = getPDO();
-
-//Correct font
-$statement = $pdo->prepare('SET CHARACTER SET utf8');
-$statement->execute();
-$pdo->exec('set names utf8');
-
-//Get data from DB
-$statement = $pdo->prepare('SELECT * FROM posts where created_at = :id');
-$statement->execute(['id'=>$id]);
-$post = $statement->fetch();
+//find post
+$pdo = new Post();
+$post = $pdo->findOne($id);
 
 //get name of file Image
 $file_name = $_FILES['fileToUpload']['name'] ?? null;
@@ -40,13 +30,7 @@ if ($file_name){
     $file_name = $post->file_name;
 }
 
-//Query update
-$statement = $pdo->prepare("UPDATE posts SET title = :title, body = :body, author = :author, file_name = :file_name WHERE created_at = :created_at");
-$statement->bindValue(':created_at', $id);
-$statement->bindValue(':title', $title);
-$statement->bindValue(':body', $body);
-$statement->bindValue(':author', $author);
-$statement->bindValue(':file_name', $file_name);
-$statement->execute();
+//update
+$pdo->update($id, $title, $body, $author, $file_name);
 
 header('Location: create.php');

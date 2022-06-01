@@ -27,9 +27,9 @@ $isSignIn = $_COOKIE['sign_in'] ?? false;
                 <li><a href="blog.php"><b>My Blog</b></a></li>
                 <li><a href="https://www.facebook.com/mta51" target="_blank"><b>Facebook</b></a></li>
                 <li><a href="https://www.instagram.com/51mta" target="_blank"><b>Instagram</b></a></li>
-                <li><a style="display: <?php echo $isSignIn ? 'none':'block' ?>" href="sign_in.php?address=index.php"><b>Sign In</b></a></li>
+                <li><a style="display: <?php echo $isSignIn ? 'none':'block' ?>" href="sign_in.php"><b>Sign In</b></a></li>
                 <li><a style="display: <?php echo $isSignIn ? 'block':'none' ?>" href="create.php"><b>Blog Manager</b></a></li>
-                <li><a style="display: <?php echo $isSignIn ? 'block':'none' ?>" href="sign_out.php?id=1"><b>Sign Out</b></a></li>
+                <li><a style="display: <?php echo $isSignIn ? 'block':'none' ?>" href="sign_out.php"><b>Sign Out</b></a></li>
             </ul>
         </div>
         <i class="fa fa-bars" onclick="showMenu()"></i>

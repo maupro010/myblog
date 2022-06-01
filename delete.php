@@ -1,6 +1,5 @@
 <?php
 require_once 'pdo.php';
-$pdo = getPDO();
 //Delete data
 $id = $_POST['id'] ?? null;
 if (!$id) {
@@ -8,8 +7,7 @@ if (!$id) {
     exit;
 }
 
-$statement = $pdo->prepare('DELETE FROM posts WHERE created_at= :created_at');
-$statement->bindValue(':created_at', $id);
-$statement->execute();
+$pdo = new Post();
+$pdo->delete($id);
 
 header('Location: create.php');

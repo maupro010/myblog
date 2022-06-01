@@ -5,12 +5,8 @@
     $isSignIn = $_COOKIE['sign_in'] ?? false;
 
     //Connect to MySQL
-    $pdo = getPDO();
-
-    //Get data
-    $statement = $pdo->prepare('SELECT * FROM posts ORDER BY created_at DESC');
-    $statement->execute();
-    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $post = new Post();
+    $posts = $post->findAll();
     ?>
 
 <!DOCTYPE html>
