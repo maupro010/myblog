@@ -1,5 +1,5 @@
 <?php
-require_once 'pdo.php';
+require_once 'Post.php';
 //Delete data
 $id = $_POST['id'] ?? null;
 if (!$id) {

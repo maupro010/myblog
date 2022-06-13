@@ -1,5 +1,5 @@
 <?php
-    require_once 'pdo.php';
+    require_once 'controller/Post.php';
 
     //check sign_in statement
     $isSignIn = $_COOKIE['sign_in'] ?? false;
@@ -49,7 +49,7 @@
         <?php foreach ($posts as $i => $post) { ?>
             <tr>
                 <th scope="row" style="text-align: left"><?php echo $i + 1 ?></th>
-                <th scope="row"><img style="width: 100px;height: 100px" src="uploads/".<?php echo $post['file_name'];?>></th>
+                <th scope="row"><img style="width: 100px;height: 100px" src=<?php echo "uploads/".$post['file_name'];?>></th>
                 <td style="text-align: justify; padding: 10px"><?php echo $post['title'] ?></td>
                 <td style="text-align: justify; padding: 10px"><?php echo substr($post['body'],0,strpos($post['body'],'.')+1).'..' ?></td>
                 <td style="text-align: center"><?php echo $post['author'] ?></td>

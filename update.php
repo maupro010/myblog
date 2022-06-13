@@ -1,5 +1,5 @@
 <?php
-require_once 'pdo.php';
+require_once 'Post.php';
 
 //Get data from edit form of edit.php
 $id = $_POST['id'] ?? null;
