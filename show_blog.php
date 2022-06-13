@@ -1,5 +1,5 @@
 <?php
-require_once 'Post.php';
+require_once 'controller/Post.php';
 
 //check sign_in statement
 $isSignIn = $_COOKIE['sign_in'] ?? false;
